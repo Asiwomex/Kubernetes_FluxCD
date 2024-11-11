@@ -2,7 +2,7 @@ apiVersion: Kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: nginx-deployment
-  namespace: flux-system
+  namespace: django
 spec:
   interval: 1m0s
   path: ./clusters/manifests/
