@@ -21,50 +21,50 @@ spec:
           image: asiwomex/django-todolist:v1.0
           imagePullPolicy: Never
           command: ["python", "manage.py", "collectstatic", "--noinput"]
-          # envFrom:
-          #   - secretRef:
-          #       name: django-secrets
-          #   - configMapRef:
-          #       name: django-config
-          volumeMounts:
-            - name: staticfiles
-              mountPath: /static/
-              readOnly: false 
-      containers:
-      - name: django-todolist
-        image: asiwomex/django-todolist:v1.0
-        imagePullPolicy: Never
-        ports:
-          - containerPort: 8000
-            protocol: TCP
-        # envFrom:
-        #   - secretRef:
-        #       name: django-secrets
-        #   - configMapRef:
-        #       name: django-config
-      #   volumeMounts:
-      #     - name: staticfiles
-      #       mountPath: /static/ ## where it wants to have the emptyDir mounted
-      #       readOnly: false
-      # - name: nginx
-      #   image: nginx
-      #   imagePullPolicy: Always
+      #     # envFrom:
+      #     #   - secretRef:
+      #     #       name: django-secrets
+      #     #   - configMapRef:
+      #     #       name: django-config
+      #     volumeMounts:
+      #       - name: staticfiles
+      #         mountPath: /static/
+      #         readOnly: false 
+      # containers:
+      # - name: django-todolist
+      #   image: asiwomex/django-todolist:v1.0
+      #   imagePullPolicy: Never
       #   ports:
-      #     - containerPort: 80
+      #     - containerPort: 8000
       #       protocol: TCP
-      #   volumeMounts:
-      #     - name: nginx-conf
-      #       mountPath: /etc/nginx/conf.d
-      #       readOnly: true
-      #     - name: staticfiles
-      #       mountPath: /static/
-      #       readOnly: true
-      # # volumes:
-      #   - name: nginx-conf
-      #     configMap:
-      #       name: nginx-conf
-      #   - name: staticfiles
-      #     emptyDir: {} ## we do not supply any further requirements for the emptyDir
+      #   # envFrom:
+      #   #   - secretRef:
+      #   #       name: django-secrets
+      #   #   - configMapRef:
+      #   #       name: django-config
+      # #   volumeMounts:
+      # #     - name: staticfiles
+      # #       mountPath: /static/ ## where it wants to have the emptyDir mounted
+      # #       readOnly: false
+      # # - name: nginx
+      # #   image: nginx
+      # #   imagePullPolicy: Always
+      # #   ports:
+      # #     - containerPort: 80
+      # #       protocol: TCP
+      # #   volumeMounts:
+      # #     - name: nginx-conf
+      # #       mountPath: /etc/nginx/conf.d
+      # #       readOnly: true
+      # #     - name: staticfiles
+      # #       mountPath: /static/
+      # #       readOnly: true
+      # # # volumes:
+      # #   - name: nginx-conf
+      # #     configMap:
+      # #       name: nginx-conf
+      # #   - name: staticfiles
+      # #     emptyDir: {} ## we do not supply any further requirements for the emptyDir
 
 ---
 
