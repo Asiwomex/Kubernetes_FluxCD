@@ -1,11 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
+  name: django-deployment
+  # creationTimestamp: null
   namespace: default
   labels:
     name: app
-  name: app
+  # name: app
 spec:
   replicas: 1
   selector:
@@ -19,7 +20,7 @@ spec:
       initContainers:
         - name: collectstatic
           image: asiwomex/django-todolist:v1.0
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           command: ["python", "manage.py", "collectstatic", "--noinput"]
       #     # envFrom:
       #     #   - secretRef:
