@@ -1,4 +1,6 @@
 # flux_k8s
+**PAY ATTENTION TO THE OTHER READMEs**
+
 - Use choco install flux AND DO THE FOLLOWING IN GITBASH
 - create github token and allow all permissions
 - export GITHUB_TOKEN='GITHUBTOKEN'
@@ -20,3 +22,6 @@ flux bootstrap github \
 9. you should see **"flux-system"** as a new namespace
 
 - use flux uninstall to uninstall and bootsrap again after staying off for sometime
+
+
+- flux reconcile ks flux-system --with-source - to speed up without the interval
