@@ -2,11 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: django-deployment
-  # creationTimestamp: null
   namespace: default
   labels:
     name: app
-  # name: app
 spec:
   replicas: 1
   selector:
@@ -22,58 +20,31 @@ spec:
           image: asiwomex/django-todolist:v1.0
           imagePullPolicy: IfNotPresent
           command: ["python", "manage.py", "collectstatic", "--noinput"]
-      #     # envFrom:
-      #     #   - secretRef:
-      #     #       name: django-secrets
-      #     #   - configMapRef:
-      #     #       name: django-config
-      #     volumeMounts:
-      #       - name: staticfiles
-      #         mountPath: /static/
-      #         readOnly: false 
-      # containers:
-      # - name: django-todolist
-      #   image: asiwomex/django-todolist:v1.0
-      #   imagePullPolicy: Never
-      #   ports:
-      #     - containerPort: 8000
-      #       protocol: TCP
-      #   # envFrom:
-      #   #   - secretRef:
-      #   #       name: django-secrets
-      #   #   - configMapRef:
-      #   #       name: django-config
-      # #   volumeMounts:
-      # #     - name: staticfiles
-      # #       mountPath: /static/ ## where it wants to have the emptyDir mounted
-      # #       readOnly: false
-      # # - name: nginx
-      # #   image: nginx
-      # #   imagePullPolicy: Always
-      # #   ports:
-      # #     - containerPort: 80
-      # #       protocol: TCP
-      # #   volumeMounts:
-      # #     - name: nginx-conf
-      # #       mountPath: /etc/nginx/conf.d
-      # #       readOnly: true
-      # #     - name: staticfiles
-      # #       mountPath: /static/
-      # #       readOnly: true
-      # # # volumes:
-      # #   - name: nginx-conf
-      # #     configMap:
-      # #       name: nginx-conf
-      # #   - name: staticfiles
-      # #     emptyDir: {} ## we do not supply any further requirements for the emptyDir
+          volumeMounts:
+            - name: staticfiles
+              mountPath: /static/
+              readOnly: false
+      containers:
+        - name: django-todolist
+          image: asiwomex/django-todolist:v1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+              protocol: TCP
+          volumeMounts:
+            - name: staticfiles
+              mountPath: /static/
+              readOnly: false
+      volumes:
+        - name: staticfiles
+          emptyDir: {}
 
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
   name: app-service
-  namespace: default  
+  namespace: default
 spec:
   type: NodePort
   selector:
@@ -81,4 +52,4 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 80
+      targetPort: 8000
