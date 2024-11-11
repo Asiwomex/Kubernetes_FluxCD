@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todoapp
+  namespace: dev
+  labels:
+    app: todoapp
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: todoapp
+  template:
+    metadata:
+      name: todoapp
+      labels:
+        app: todoapp
+    spec:
+      containers:
+      - name: todoapp
+        image: eekpodo/django:latest
+        ports:
+        - containerPort: 8000
+        envFrom:
+        - configMapRef:
+            name: todoapp-config
+        - secretRef:
+            name: todoapp-secret
+        command: ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: todoapp-service
+  namespace: dev
+spec:
+  selector:
+    app: todoapp
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000

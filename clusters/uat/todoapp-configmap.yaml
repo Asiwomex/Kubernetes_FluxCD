@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: todoapp-config
+  labels:
+    env: dev
+  namespace: dev
+data:
+  DB_ENGINE: django.db.backends.postgresql
+  DB_HOST: my-postgres
+  DB_NAME: postgres
+  DB_USER: postgres
+  DB_PASSWORD: postgres
+  DB_PORT: "5432"
+  
