@@ -11,10 +11,12 @@
 flux bootstrap github \
   --owner=$GITHUB_USER \
   --repository=flux_k8s \
-  --path=clusters/dev \
+  --path=clusters/manifests \
   --token-auth \
   --personal
 ```
 
 8. use `kubectl get ns` to get namespaces
 9. you should see **"flux-system"** as a new namespace
+
+- use flux uninstall to uninstall and bootsrap again after staying off for sometime
