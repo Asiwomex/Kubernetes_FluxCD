@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-deployment
-  namespace: django #remove this line if you don't have a name space and want to deploy to the cluster
+  namespace: default #remove this line if you don't have a name space and want to deploy to the cluster
 spec:
   replicas: 1
   selector:
@@ -24,7 +24,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx-service
-  namespace: django #remove this line if you don't have a name space and want to deploy to the cluster
+  namespace: default #remove this line if you don't have a name space and want to deploy to the cluster
 spec:
   type: ClusterIP
   selector:
