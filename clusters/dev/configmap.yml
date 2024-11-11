@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: django-config
+data:
+  DEBUG : 'True'
+  DB_NAME : 'postgresdb'
+  DB_HOST : '10.96.185.181' # Nodeport ip
+  DB_PORT : '5432'
