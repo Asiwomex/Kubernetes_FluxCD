@@ -1,4 +1,4 @@
-# flux_k8s
+# Kubernetes_FluxCD
 **PAY ATTENTION TO THE OTHER READMEs**
 
 - Use choco install flux AND DO THE FOLLOWING IN GITBASH
