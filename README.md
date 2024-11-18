@@ -13,7 +13,7 @@
 ```bash
 flux bootstrap github \
   --owner=$GITHUB_USER \
-  --repository=flux_k8s \
+  --repository=Kubernetes_FluxCD \
   --path=clusters/manifests \
   --token-auth \
   --personal
