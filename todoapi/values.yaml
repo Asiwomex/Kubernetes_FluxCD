@@ -1,0 +1,35 @@
+# values.yaml
+
+replicaCount: 1
+
+image:
+  repository: eekpodo/django
+  tag: latest
+  pullPolicy: IfNotPresent
+
+postgresImage:
+  repository: postgres
+  tag: 16-alpine3.20
+
+service:
+  name: todoapp-service
+  port: 80
+  targetPort: 8000
+
+env:
+  DB_ENGINE: django.db.backends.postgresql
+  DB_HOST: my-postgres
+  DB_NAME: postgres
+  DB_USER: postgres
+  DB_PASSWORD: postgres
+  DB_PORT: "5432"
+
+postgresConfig:
+  POSTGRES_DB: postgres
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+
+persistence:
+  enabled: true
+  storageClass: postgres-storage
+  size: 200Mi
