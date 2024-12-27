@@ -32,8 +32,8 @@ This command is used to **initialize Flux CD in a GitOps setup** by bootstrappin
    - Specifies the **GitHub account (owner)** of the repository. `$GITHUB_USER` is a variable that should hold your GitHub username or organization name.
    - For example, if `$GITHUB_USER` is set to "asiwomex," Flux will use that account.
 
-3. **`--repository=flux_k8s`**:
-   - This is the **name of the GitHub repository** where Flux will be set up. In this case, Flux will use the repository named `flux_k8s`.
+3. **`--repository=Kubernetes_FluxCD`**:
+   - This is the **name of the GitHub repository** where Flux will be set up. In this case, Flux will use the repository named `Kubernetes_FluxCD`.
 
 4. **`--path=clusters/manifests`**:
    - Specifies the **directory path within the repository** where Flux will look for Kubernetes manifests (YAML files).
