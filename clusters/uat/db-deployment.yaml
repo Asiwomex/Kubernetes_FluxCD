@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todopostgres
+  namespace: dev
+  labels:
+    app: tododb
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tododb
+  template:
+    metadata:
+      name: tododb
+      namespace: dev
+      labels:
+        app: tododb
+    spec:
+      containers:
+      - name: mydb
+        image: postgres:16-alpine3.20
+        ports:
+        - containerPort: 5432 
+        envFrom:
+        - configMapRef:
+            name: db-config
+        - secretRef:
+            name: db-secret
+        volumeMounts:
+        - name: postgres-storage
+          mountPath: /var/lib/postgresql/data
+        resources:
+          requests:
+            cpu: "200m"
+            memory: "250Mi"
+          limits:
+            cpu: "1"
+            memory: "600Mi"
+      volumes:
+      - name: postgres-storage
+        persistentVolumeClaim:
+          claimName: postgres-claim
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-postgres
+  namespace: dev
+spec:
+  selector:
+    app: tododb
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
