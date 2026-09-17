@@ -30,7 +30,7 @@ export GITHUB_USER=<your-username>
 
 flux bootstrap github \
   --owner=$GITHUB_USER \
-  --repository=flux_k8s \
+  --repository=Kubernetes_FluxCD \
   --path=clusters/kind \
   --token-auth \
   --personal
